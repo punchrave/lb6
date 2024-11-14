@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypotenuse Calculator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        #calculator {
+            width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="calculator">
+    <h2>Hypotenuse Calculator</h2>
+    <form id="hypotenuseForm">
+        <label for="cathetus">Cathetus length:</label>
+        <input type="number" id="cathetus" name="cathetus" required>
+
+        <label for="angle">Opposite angle (degrees):</label>
+        <input type="number" id="angle" name="angle" required>
+
+        <button type="submit">Calculate</button>
+    </form>
+    <div id="result"></div>
+</div>
+
+<script>
+    document.getElementById('hypotenuseForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        const cathetus = parseFloat(document.getElementById('cathetus').value);
+        const angle = parseFloat(document.getElementById('angle').value);
+
+        if (isNaN(cathetus) || isNaN(angle)) {
+           document.getElementById('result').textContent = "Please enter valid numbers.";
+            return;
+        }
+        const angleRad = angle * Math.PI / 180;
+        const hypotenuse = cathetus / Math.sin(angleRad);
+
+        document.getElementById('result').textContent = "Hypotenuse length: " + hypotenuse.toFixed(2);
+    });
+</script>
+
+</body>
+</html>
